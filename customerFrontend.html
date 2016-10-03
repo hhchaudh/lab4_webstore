@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/tether/1.3.7/tether.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"
+          integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js"
+            integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU"
+            crossorigin="anonymous"></script>
+    <script src="formChecker.js"></script>
+</head>
+<body>
+
+<div class="container vertical-center">
+    <form action="customerBackend.php" onsubmit="return validateForm()" method="post" name="storeForm" id="storeForm">
+        <div class="form-group">
+            <label for="hammers">Hammer <strong>$5.00</strong>:</label>
+            <input type="input" class="form-control" id="hammers" name="hammers" required
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                   placeholder="# of hammers">
+        </div>
+        <div class="form-group">
+            <label for="nails">Box of 100 Nails <strong>$3.00</strong>:</label>
+            <input type="input" class="form-control" id="nails" name="nails" required
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                   placeholder="# of boxes of nails">
+        </div>
+        <div class="form-group">
+            <label for="wood">Planks of Wood (1ft x 10ft) <strong>$7.00</strong>:</label>
+            <input type="input" class="form-control" id="wood" name="wood" required
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                   placeholder="# of planks of wood">
+        </div>
+        <div class="form-group">
+            <label for="userEmail">Email address</label>
+            <input type="email" class="form-control" id="userEmail"
+                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                   placeholder="Enter email" name="userEmail" required>
+            <small id="emailHelp" class="form-text text-muted">Format Example: user@domain.com</small>
+        </div>
+        <div class="form-group">
+            <label for="userPassword">Password</label>
+            <input type="password" class="form-control" id="userPassword" placeholder="Password" name="userPassword"
+                   required>
+        </div>
+        <fieldset class="form-group">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="shipping" id="Seven-Day"
+                           value="Seven-Day" required>
+                    7 Day Shipping (Free!)
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="shipping" id="Overnight"
+                           value="Overnight" required>
+                    Overnight Shipping ($50.00)
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="shipping" id="Three-Day"
+                           value="Three-Day" required>
+                    Three Day Shipping ($5.00)
+                </label>
+            </div>
+        </fieldset>
+        <button type="button" class="btn btn-danger" onclick="resetForm()">Reset</button>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+</body>
+</html>
