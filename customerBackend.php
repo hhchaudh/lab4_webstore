@@ -12,6 +12,9 @@
     <script src="formChecker.js"></script>
 </head>
 <body>
+<?php echo "<h3>Thank you " . $_POST['userEmail'] . "</h3>";
+echo '<h3>Your Password is<span id="phpPassword"> ' . $_POST["userPassword"] . '</span></h3>';
+?>
 <div class="container vertical-center">
     <?php
     setlocale(LC_MONETARY, 'en_US.UTF-8');
@@ -20,8 +23,9 @@
     $shippingCosts = array('Three-Day' => 5.00, 'Seven-Day' => 0, 'Overnight' => 50.00);
     $totalCost = 0;
 
-    echo "<table class=\"table table-bordered table-striped\">
-  <thead>
+    echo "<table class=\"table table-bordered table-striped\">";
+
+    echo "<thead>
     <tr>
       <th>Item</th>
       <th>Quantity</th>
@@ -31,31 +35,50 @@
   </thead>
   <tbody>";
 
-    foreach($itemCost as $key => $value) {
+    foreach ($itemCost as $key => $value) {
         $currentCost = $value * $_POST[$key];
         echo "<tr>";
-        echo '<th scope="row">'; echo $key; echo '</th>';
-        echo '<td>'; echo $_POST[$key]; echo'</td>';
-        echo '<td>'; echo money_format('%.2n', $value); echo '</td>';
-        echo '<td>'; echo money_format('%.2n', $currentCost); echo'</td>';
+
+        echo '<th scope="row">';
+        echo $key;
+        echo '</th>';
+
+        echo '<td>';
+        echo $_POST[$key];
+        echo '</td>';
+
+        echo '<td>';
+        echo money_format('%.2n', $value);
+        echo '</td>';
+
+        echo '<td>';
+        echo money_format('%.2n', $currentCost);
+        echo '</td>';
+
         echo '</tr>';
+
         $totalCost += $currentCost;
     }
 
     echo '<tr>';
     echo '<th scope="row">Shipping</th>';
-    echo '<td colspan="2">'; echo $_POST['shipping']; echo '</td>';
-    echo '<td>'; echo money_format('%.2n', $shippingCosts[$_POST['shipping']]); echo '</td>';
+    echo '<td colspan="2">';
+    echo $_POST['shipping'];
+    echo '</td>';
+    echo '<td>';
+    echo money_format('%.2n', $shippingCosts[$_POST['shipping']]);
+    echo '</td>';
     echo '</tr>';
     $totalCost += $shippingCosts[$_POST['shipping']];
 
     echo '<tr>';
     echo '<th scope="row" colspan="3">Total Cost </th>';
-    echo '<td>'; echo money_format('%.2n', $totalCost); echo '</td>';
+    echo '<td>';
+    echo money_format('%.2n', $totalCost);
+    echo '</td>';
 
 
-
-  echo "</tbody>
+    echo "</tbody>
 </table>";
     ?>
 </div>
